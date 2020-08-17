@@ -1,5 +1,4 @@
 import React from 'react';
-import data from './data';
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import './App.css';
 import HomeScreen from './Screens/HomeScreen'
@@ -47,8 +46,8 @@ function App() {
                 </aside>
                 <main className="main">
                     <div className="content">
-                    <Route path="/products/:id" component={ProductScreen}/>
-                      <Route path="/" excact={true} component={HomeScreen} />
+                    <Route path="/product/:id" component={ProductScreen}/>
+                      <Route path="/" exact={true} component={HomeScreen} />
                     </div>
                     
                     
