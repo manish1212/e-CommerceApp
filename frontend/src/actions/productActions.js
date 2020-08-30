@@ -1,16 +1,17 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstants"
-import axios from "axios";
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL } from "../constants/productConstants"
+import axios from 'axios';
 
-const listProducts = () => {
-    try {
-        dispatchEvent(PRODUCT_LIST_REQUEST);
-        //SEND AJAX REQUES TOT THE SERVER
-        const {data} = await axios.get('/api/products');
-        dispatchEvent({type:PRODUCT_LIST_SUCCESS, payload: data});
-    }
-    catch(error){
-        dispatchEvent({type:PRODUCT_LIST_FAIL, payload: data});
+const listProducts = () => async (dispatch) => {
+
+    try{
+        dispatch({ type: PRODUCT_LIST_REQUEST });
+        const { data } = await axios.get("/api/products");
+        console.log("data -> ", data);
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+    }catch(error){
+        dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
     }
     
-}
-export {listProducts}
+} 
+
+export {listProducts};
